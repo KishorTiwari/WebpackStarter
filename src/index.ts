@@ -1,10 +1,22 @@
 import * as _ from 'lodash';
 
-var typeWriter = document.getElementById('type-writer');
+const typeWriter = document.getElementById('type-writer');
+const h = document.createElement('h1');
+typeWriter?.appendChild(h);
 
-var content = "Hello world, \n. This is Kishor Tiwari & I'm glad to have you here."
+var content = "Hello World. \n I am Kishor &...";
 
 var arrContent = _.toArray(content);
 
-//console.log(arrContent);
-//console.log("yoo");
+var counter = 0;
+var interval = 100; //ms
+arrContent.forEach(val => {
+    if(val == '\n')
+        val = '<br>';
+        
+    setTimeout(()=>{
+        console.log(`Writing: ${val}`);
+        h.innerHTML += val;
+    }, interval * counter);
+    counter++;
+});
