@@ -105,4 +105,30 @@ So, let now automactically build the ts files as soon as we save any ts file, so
 
 3. Run command npm run serve-my-site, and go to https://localhost:8080 to see the page.
 
+4. Now, if we want the hot-reload, we will need make changes to our webpack.config.js file. When you hit save, 
+    the development server does compile the ts files but it doesn't output to the 'public' folder. The compiled js 
+    content will be stored in the memory. To make dev server save it to the output folder, 
+    we need to add: `publicPath: 'public'` to the output object. So the resulting webpack.config.js should look like this:
+
+    const path = require('path'); 
+
+    module.exports = {
+        entry: './src/index.ts',
+        module:{
+            rules:[
+                {
+                    test: /\.ts/,
+                    use: 'ts-loader',
+                    include: [path.resolve(__dirname, 'src')]
+                }
+            ]
+        },
+        output:{
+            publicPath: 'public',
+            filename : 'bundle.js',
+            path: path.resolve(__dirname, './public')
+        }
+    }
+
+5. That's it. Now if you hit save, webpack dev server not only compiles ts files but also save content to  the output directory, in our case 'public' folder. 
 That's it!!! Happy coding

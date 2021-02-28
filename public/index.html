@@ -4,8 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kishor Tiwari | Software Developer</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&display=swap" rel="stylesheet">
 </head>
+<style>
+    html,body{
+        margin: 0;
+        padding: 0;
+        font-family: 'Fira Code', monospace;
+        color:#fff;
+    }
+    body{
+        background:#014c5d;
+        animation: animateBody;
+        animation-duration: 30s;
+        animation-iteration-count: infinite;
+    }
+
+@keyframes animateBody {
+    0%   { background: #014c5d; }
+    15%  { background: #014c5d; }
+    30%  { background: #020080; }
+    45%  { background: #800076; }
+    60%  { background: #802300; }
+    75%  { background: #430080; }
+    90%  { background: #800076; }
+    100%  { background: #014c5d; }
+}
+    
+</style>
 <body>
-    <h1><center>Hello world</center></h1>
+    <center>
+        <div id="type-writer">
+            <h1>Hello world</h2>
+        </div>
+    </center>
+
+    <script src="bundle.js"></script>
 </body>
 </html>
