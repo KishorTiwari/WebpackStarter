@@ -105,4 +105,4 @@ So, let now automactically build the ts files as soon as we save any ts file, so
 
 3. Run command npm run serve-my-site, and go to https://localhost:8080 to see the page.
 
-That's it mate. Happy coding
+That's it!!! Happy coding
