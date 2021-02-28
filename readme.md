@@ -2,20 +2,20 @@ Set up webpack/typescript to write webpage from scratch withouth using any JS fr
 
 1. Install nodejs (this will also install npm)
 
-2. Install typescript. npm install -g typescript
+2. Install typescript. `npm install -g typescript`
 
-3. Initialise typescript inside your project. So go to project foler -> command -> tsc init. This will create tsconfig.json.
+3. Initialise typescript inside your project. So go to project foler, run command  `tsc init`. This will create tsconfig.json.
     Change target to es6, module -> es2020
 
-4. Now create package.json file to manage dependecies. So to do that, command -> npm init. This creates package.json file that keeps track of our packages. 
+4. Now create package.json file to manage dependecies. So to do that, run command `npm init`. This creates package.json file that keeps track of our packages. 
 
-5. To install dependecies, eg web-pack tools, command -> npm install/i webpack webpack-cli ts-loader -D (this means, these are dev dependecies, 
+5. To install dependecies, eg web-pack tools, run command `npm install/i webpack webpack-cli ts-loader -D` (this means, these are dev dependecies, 
     which makes sense as we wouldn't want webpack js files on our live set). "ts-loader" will guide webpack to compile ts to js. Doing this also 
-    updates package.json file. Remember this is not -g / global So will require package.json file before running this command inside the project folder.
+    updates package.json file. Remember this is not `-g` / global So will require package.json file before running this command inside the project folder.
 
-6. We also need to install typescript locally(within the project foler) for webpack to work. Remember before we passed in -g flag to the command, 
-    which will install typescript globally. So to install it again locally, command -> npm i typescript -D(rember live server doesn't need this, 
-    as it only get's js compiled file anyway)
+6. We also need to install typescript locally(within the project foler) for webpack to work. Remember before we passed in `-g` flag to the command, 
+    which will install typescript globally. So to install it again locally, run command `npm i typescript -D`(rember live server doesn't need this, 
+    as it only gets js compiled files anyway)
 
 7. Create a folder called "src" where we will write our code, so the src code will always live here. Now, when the src code gets compiled we want it 
     to store in another folder so let's called it "public"/"dist", since it is for public and will uploaded to the server where our site runs.
@@ -29,7 +29,7 @@ Set up webpack/typescript to write webpage from scratch withouth using any JS fr
 
 10. Inside the webpack.config.js let's define the configuration that webpack understands and export as an module, so it get run by the nodejs. 
 
-        const path = require('path');  //this brings in files from nodejs that calcutes the current absolute path, and assign it to a const variable called 'path'.
+        `const path = require('path');  //this brings in files from nodejs that calcutes the current absolute path, and assign it to a const variable called 'path'.
 
         module.exports = { // export so that nodejs can run this file
             entry: './src/index.ts', // entry point, this is relative path.
@@ -46,12 +46,12 @@ Set up webpack/typescript to write webpage from scratch withouth using any JS fr
                 filename : 'bundle.js', // this could be anything but let's give it a sense.
                 path: path.resolve(__dirname, './public') // this is absolute path, so we need to use path.resolve(), adn __dirname is a global variable predefined by node
             }
-        }
+        }`
 
 11. And lastly, define a command in package.json that will run webpack command, which will then comiple ts to js based on the webpack.config.js settings
     After defining that command, packages.json will look like this:
 
-        {
+        `{
             "name": "mysite",
             "version": "1.0.0",
             "description": "",
@@ -68,17 +68,17 @@ Set up webpack/typescript to write webpage from scratch withouth using any JS fr
                 "webpack": "^5.24.2",
                 "webpack-cli": "^4.5.0"
             }
-        }
+        }`
 
 12. Now all we have to do is, run this command -> npm run build-my-site. This will create bundle.js file under the public folder. 
 
 So, let now automactically build the ts files as soon as we save any ts file, so that we don't have to run build command again and again
 
-1. Okay, let's get the dependecies! So command -> npm i webpack-dev-server -D (rember this is only for development so -D)
+1. Okay, let's get the dependecies! So run command `npm i webpack-dev-server -D` (rember this is only for development so -D)
 
 2. Now let's define a script command in the package.json again. So it would look like:
 
-        {
+        `{
             "name": "mysite",
             "version": "1.0.0",
             "description": "",
@@ -101,16 +101,16 @@ So, let now automactically build the ts files as soon as we save any ts file, so
                 "webpack-cli": "^4.5.0",
                 "webpack-dev-server": "^3.11.2"
             }
-        }
+        }`
 
-3. Run command npm run serve-my-site, and go to https://localhost:8080 to see the page.
+3. Run command npm run serve-my-site, and go to `https://localhost:8080` to see the page.
 
 4. Now, if we want the hot-reload, we will need make changes to our webpack.config.js file. When you hit save, 
     the development server does compile the ts files but it doesn't output to the 'public' folder. The compiled js 
     content will be stored in the memory. To make dev server save it to the output folder, 
     we need to add: `publicPath: 'public'` to the output object. So the resulting webpack.config.js should look like this:
-
-    const path = require('path'); 
+    
+    `const path = require('path'); 
 
     module.exports = {
         entry: './src/index.ts',
@@ -124,11 +124,10 @@ So, let now automactically build the ts files as soon as we save any ts file, so
             ]
         },
         output:{
-            publicPath: 'public',
-            filename : 'bundle.js',
-            path: path.resolve(__dirname, './public')
+            publicPath: 'public', // location where webpack dev server outputs the compiled ts files
+            filename : 'bundle.js', // output filename
+            path: path.resolve(__dirname, './public') // location where webpack outputs the compiled ts files
         }
-    }
-
+    }`
 5. That's it. Now if you hit save, webpack dev server not only compiles ts files but also save content to  the output directory, in our case 'public' folder. 
 That's it!!! Happy coding
