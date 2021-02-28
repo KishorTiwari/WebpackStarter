@@ -78,30 +78,30 @@ So, let now automactically build the ts files as soon as we save any ts file, so
 
 2. Now let's define a script command in the package.json again. So it would look like:
 
-    {
-        "name": "mysite",
-        "version": "1.0.0",
-        "description": "",
-        "main": "index.js",
-        "scripts": {
-            "test": "echo \"Error: no test specified\" && exit 1",
-            "build-my-site": "webpack",
-            "serve-my-site" :"webpack serve" , 
-            // New guy!!!!, this runs webpack dev server (which then runs webpack to build the ts files) which listens for any changes and run webpack again.
-            // For webpack < 4 sei it to "webpack-dev-server" 
-            // Now we don't have to run npm run build-my-site, as npm run serve-my-site will also do that before serving the browser. But if you just want to 
-            // build the files, it can still be useful
-        },
-        "author": "",
-        "license": "ISC",
-        "devDependencies": {
-            "ts-loader": "^8.0.17",
-            "typescript": "^4.2.2",
-            "webpack": "^5.24.2",
-            "webpack-cli": "^4.5.0",
-            "webpack-dev-server": "^3.11.2"
+        {
+            "name": "mysite",
+            "version": "1.0.0",
+            "description": "",
+            "main": "index.js",
+            "scripts": {
+                "test": "echo \"Error: no test specified\" && exit 1",
+                "build-my-site": "webpack",
+                "serve-my-site" :"webpack serve"
+                // New guy!!!!, this runs webpack dev server (which then runs webpack to build the ts files) which listens for any changes and run webpack again.
+                // For webpack < 4 sei it to "webpack-dev-server" 
+                // Now we don't have to run npm run build-my-site, as npm run serve-my-site will also do that before serving the browser. But if you just want to 
+                // build the files, it can still be useful
+            },
+            "author": "",
+            "license": "ISC",
+            "devDependencies": {
+                "ts-loader": "^8.0.17",
+                "typescript": "^4.2.2",
+                "webpack": "^5.24.2",
+                "webpack-cli": "^4.5.0",
+                "webpack-dev-server": "^3.11.2"
+            }
         }
-    }
 
 3. Run command npm run serve-my-site, and go to https://localhost:8080 to see the page.
 
