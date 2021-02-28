@@ -116,9 +116,9 @@ So, let now automactically build the ts files as soon as we save any ts file, so
     content will be stored in the memory. To make dev server save it to the output folder, 
     we need to add: `publicPath: 'public'` to the output object. So the resulting webpack.config.js should look like this:
     
-    ````
+    ```
     const path = require('path'); 
-    
+
     module.exports = {
         entry: './src/index.ts',
         module:{
@@ -135,7 +135,7 @@ So, let now automactically build the ts files as soon as we save any ts file, so
             filename : 'bundle.js', // output filename
             path: path.resolve(__dirname, './public') // location where webpack outputs the compiled ts files
         }
-    }
+    }  
     ```
 5. That's it. Now if you hit save, webpack dev server not only compiles ts files but also save content to  the output directory, in our case 'public' folder. 
 That's it!!! Happy coding
