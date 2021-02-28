@@ -29,6 +29,7 @@ Set up webpack/typescript to write webpage from scratch withouth using any JS fr
 
 10. Inside the webpack.config.js let's define the configuration that webpack understands and export as an module, so it get run by the nodejs. 
 
+    ```
         const path = require('path');  //this brings in files from nodejs that calcutes the current absolute path, and assign it to a const variable called 'path'.
 
         module.exports = { // export so that nodejs can run this file
@@ -47,10 +48,12 @@ Set up webpack/typescript to write webpage from scratch withouth using any JS fr
                 path: path.resolve(__dirname, './public') // this is absolute path, so we need to use path.resolve(), adn __dirname is a global variable predefined by node
             }
         }
+    ```
 
 11. And lastly, define a command in package.json that will run webpack command, which will then comiple ts to js based on the webpack.config.js settings
     After defining that command, packages.json will look like this:
 
+    ```
         {
             "name": "mysite",
             "version": "1.0.0",
@@ -69,6 +72,7 @@ Set up webpack/typescript to write webpage from scratch withouth using any JS fr
                 "webpack-cli": "^4.5.0"
             }
         }
+    ```
 
 12. Now all we have to do is, run this command -> npm run build-my-site. This will create bundle.js file under the public folder. 
 
@@ -78,7 +82,8 @@ So, let now automactically build the ts files as soon as we save any ts file, so
 
 2. Now let's define a script command in the package.json again. So it would look like:
 
-        ```{
+    ```
+        {
             "name": "mysite",
             "version": "1.0.0",
             "description": "",
@@ -101,7 +106,8 @@ So, let now automactically build the ts files as soon as we save any ts file, so
                 "webpack-cli": "^4.5.0",
                 "webpack-dev-server": "^3.11.2"
             }
-        }```
+        }
+    ```
 
 3. Run command npm run serve-my-site, and go to `https://localhost:8080` to see the page.
 
@@ -112,6 +118,7 @@ So, let now automactically build the ts files as soon as we save any ts file, so
     
     ````
     const path = require('path'); 
+    
     module.exports = {
         entry: './src/index.ts',
         module:{
@@ -128,6 +135,7 @@ So, let now automactically build the ts files as soon as we save any ts file, so
             filename : 'bundle.js', // output filename
             path: path.resolve(__dirname, './public') // location where webpack outputs the compiled ts files
         }
-    }```
+    }
+    ```
 5. That's it. Now if you hit save, webpack dev server not only compiles ts files but also save content to  the output directory, in our case 'public' folder. 
 That's it!!! Happy coding
